@@ -1,0 +1,15 @@
+<script>
+(function() {
+  if (window.location.pathname === "/" || window.location.pathname === "") {
+    window.location.replace("/support/home");
+  }
+})();
+</script>
+
+{{header}}
+
+<main class="fw-main-wrapper" id="fw-main-content">
+  {{ content_for_layout }}
+</main>
+
+{{footer}}
