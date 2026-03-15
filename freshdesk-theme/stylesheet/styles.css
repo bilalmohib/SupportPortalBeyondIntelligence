@@ -471,8 +471,9 @@ nav a:hover {
 .portal-search input:focus,
 .search-box input:focus,
 .search-container input:focus {
-  border-color: var(--freshdesk-primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  /* Highlight is handled on the container via :focus-within to keep icon stable */
+  border-color: transparent;
+  box-shadow: none;
 }
 
 /* Search on purple background */
@@ -510,7 +511,7 @@ nav a:hover {
 .fw-helpcenter input[type="text"] {
   background-color: #FFFFFF !important;
   color: #111827 !important;
-  border: 1px solid #D1D5DB !important;
+  border: none !important;
   border-radius: 4px !important;
   padding: 10px 16px !important;
   outline: none !important;
@@ -522,11 +523,7 @@ nav a:hover {
   opacity: 1 !important;
 }
 
-.fw-helpcenter input[type="search"]:focus,
-.fw-helpcenter input[type="text"]:focus {
-  border-color: var(--freshdesk-primary) !important;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
-}
+/* Focus ring for hero search is applied on container, not input, so icon/button doesn't move */
 
 .portal-search:focus-within,
 .search-box:focus-within,
