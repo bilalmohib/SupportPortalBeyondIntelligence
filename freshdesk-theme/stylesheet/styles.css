@@ -505,13 +505,13 @@ nav a:hover {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-/* Fallback styling for any hero search input within fw-helpcenter */
+/* Ensure hero search input is clearly visible on purple background */
 .fw-helpcenter input[type="search"],
 .fw-helpcenter input[type="text"] {
   background-color: #FFFFFF !important;
   color: #111827 !important;
   border: 1px solid #D1D5DB !important;
-  border-radius: 9999px !important;
+  border-radius: 4px !important;
   padding: 10px 16px !important;
   outline: none !important;
 }
