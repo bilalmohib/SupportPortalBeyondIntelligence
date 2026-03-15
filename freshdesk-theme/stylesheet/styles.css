@@ -1,0 +1,1375 @@
+/**
+ * Beyond Intelligence - Freshdesk Portal Theme
+ * 
+ * This is a comprehensive theme combining:
+ * 1. Design System Variables (theme.css) 
+ * 2. Freshdesk Portal Customization (freshdesk-theme.css)
+ * 
+ * This stylesheet maps the Beyond Intelligence design system to Freshdesk
+ * support portal classes and elements, ensuring visual consistency with
+ * beyondintelligence.ai
+ * 
+ * NOTE: All styles are SCOPED to Freshdesk portal context only
+ * NO global overrides - does not affect main app layout
+ */
+
+/* ============================================================================
+   ROOT COLOR VARIABLES & DESIGN TOKENS (FRESHDESK PORTAL ONLY)
+   ============================================================================ */
+
+.portal-body,
+.support-home,
+.article-page,
+.category-page,
+.portal-container {
+  /* Base Radius */
+  --radius: 0.625rem; /* 10px */
+  --radius-sm: calc(var(--radius) - 4px); /* 6px */
+  --radius-md: calc(var(--radius) - 2px); /* 8px */
+  --radius-lg: var(--radius); /* 10px */
+  --radius-xl: calc(var(--radius) + 4px); /* 14px */
+
+  /* Primary Colors */
+  --color-primary: #6366F1;
+  --color-primary-foreground: #FFFFFF;
+  --color-primary-hover: #4F46E5;
+  --color-primary-disabled: #A5B4FC;
+  --color-primary-light: #EEF2FF;
+
+  /* Secondary Colors */
+  --color-secondary: #F6F6F6;
+  --color-secondary-gray: #9D9AA6;
+  --color-secondary-foreground: #232323;
+
+  /* Background Colors */
+  --color-background: #0B0C26;
+  --color-background-secondary: #151641;
+  --color-background-secondary-2: #07081D;
+  --color-foreground: #1d1d1d;
+
+  /* Card Colors */
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1d1d1d;
+  --color-card-border: #E5E7EB;
+
+  /* Popover Colors */
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #1d1d1d;
+
+  /* Border Colors */
+  --color-border: #E5E7EB;
+  --color-border-hover: #9CA3AF;
+  --color-border-focus: #A5B4FC;
+  --color-border-error: #EF4444;
+  --color-border-primary: #7C81E8;
+
+  /* Text & Input Colors */
+  --color-text-heading: #1d1d1d;
+  --color-text-body: #1d1d1d;
+  --color-text-muted: #9D9AA6;
+  --color-text-white: #FFFFFF;
+  --color-input-text: #050620;
+  --color-input-placeholder: #9CA3AF;
+  --color-input-label-disabled: #9CA3AF;
+  --color-input-bg: #FFFFFF;
+  --color-input-border-default: #E5E7EB;
+  --color-input-border-hover: #9CA3AF;
+  --color-input-border-focus: #A5B4FC;
+  --color-input-border-active: #9CA3AF;
+  --color-input-border-disabled: #E5E7EB;
+
+  /* Accent & Semantic Colors */
+  --color-accent: #14b8a6;
+  --color-accent-foreground: #232323;
+  --color-destructive: #EF4444;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-info: #3B82F6;
+
+  /* Muted Colors */
+  --color-muted: #F6F6F6;
+  --color-muted-foreground: #9D9AA6;
+
+  /* Special Colors */
+  --color-radio-text: #232323;
+  --color-white-smoke: #F6F6F6;
+  --color-multi-select-bg: #232562;
+  --color-white-overlay: #FFFFFF1A;
+  --color-input-underline: #E5E7EB;
+
+  /* Ring & Focus */
+  --color-ring: #6366F1;
+  --color-ring-focus: rgba(55, 125, 238, 0.5);
+
+  /* Font */
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(16, 24, 40, 0.08);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-input-focus: 0px 0px 0px 4px #E1E1FEB2;
+  --shadow-input-error: 0px 1px 2px 0px #10182814;
+
+  /* Freshdesk Specific Variables */
+  --freshdesk-primary: #6366F1;
+  --freshdesk-primary-hover: #4F46E5;
+  --freshdesk-primary-dark: #3f408f;
+  --freshdesk-primary-light: #EEF2FF;
+  --freshdesk-background: #FFFFFF;
+  --freshdesk-background-dark: #0B0C26;
+  --freshdesk-text: #1d1d1d;
+  --freshdesk-text-secondary: #9D9AA6;
+  --freshdesk-text-light: #A0A0A0;
+  --freshdesk-border: #E5E7EB;
+  --freshdesk-border-light: #F0F0F0;
+  --freshdesk-hover: #F6F6F6;
+  --freshdesk-status-success: #22C55E;
+  --freshdesk-status-warning: #F59E0B;
+  --freshdesk-status-error: #EF4444;
+  --freshdesk-status-info: #3B82F6;
+  --freshdesk-spacing: 8px;
+  --freshdesk-radius: 8px;
+  --freshdesk-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.08);
+}
+
+/* Dark Mode Overrides */
+.dark {
+  --color-background: #0B0C26;
+  --color-foreground: #FFFFFF;
+  --color-card: #151641;
+  --color-card-foreground: #FFFFFF;
+  --color-card-border: rgba(255, 255, 255, 0.1);
+  --color-popover: #1d1d2e;
+  --color-popover-foreground: #FFFFFF;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-hover: #7C81E8;
+  --color-muted: #151641;
+  --color-muted-foreground: #A0A0A0;
+  --color-input-bg: rgba(255, 255, 255, 0.15);
+  --color-input-border-default: rgba(255, 255, 255, 0.2);
+  --color-input-border-hover: #7C81E8;
+  --color-input-border-focus: #A5B4FC;
+  --color-input-placeholder: #A0A0A0;
+}
+
+/* ============================================================================
+   GLOBAL STYLES & BASE TYPOGRAPHY (Portal Scoped)
+   ============================================================================ */
+
+/* Note: No global html or body selectors to avoid affecting main app */
+
+.portal-body,
+body.support-home,
+body.article-page,
+body.category-page {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--freshdesk-text);
+  background-color: var(--freshdesk-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headings - Scoped to Portal */
+.portal-body h1,
+.support-home h1,
+.article-page h1,
+.category-page h1 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 1em 0;
+  letter-spacing: 0;
+}
+
+.portal-body h2, 
+.support-home h2,
+.article-page h2,
+.category-page h2 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0;
+}
+
+.portal-body h3,
+.support-home h3,
+.article-page h3,
+.category-page h3 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0;
+}
+
+.portal-body h4,
+.support-home h4,
+.article-page h4,
+.category-page h4 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0;
+}
+
+.portal-body h5,
+.support-home h5,
+.article-page h5,
+.category-page h5 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0;
+}
+
+.portal-body h6,
+.support-home h6,
+.article-page h6,
+.category-page h6 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0;
+}
+
+.portal-body p {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.42;
+  color: var(--freshdesk-text);
+  margin: 0 0 1em 0;
+}
+
+/* ============================================================================
+   PRIMARY BACKGROUND SECTION STYLES (Hero/Banner Sections)
+   ============================================================================ */
+
+/* Headings on primary background sections should be white */
+.fw-helpcenter h2,
+.fw-helpcenter h3,
+.fw-helpcenter h4,
+.fw-helpcenter h5,
+.fw-helpcenter h6 {
+  color: #FFFFFF !important;
+}
+
+/* Featured items section headings */
+[style*="background-color: rgb(99, 102, 241)"] h2,
+[style*="background-color: rgb(99, 102, 241)"] h3,
+[style*="background-color: rgb(99, 102, 241)"] h4,
+[style*="background-color: #6366F1"] h2,
+[style*="background-color: #6366F1"] h3,
+[style*="background-color: #6366F1"] h4 {
+  color: #FFFFFF !important;
+}
+
+/* Featured item cards and containers */
+.featured-items,
+.feature-cards,
+[class*="featured"] {
+  margin-top: 16px;
+}
+
+.featured-section {
+  background-color: transparent;
+  padding: 80px 0 40px 0;
+  margin-top: 60px;
+}
+
+.featured-card {
+  display: flex !important;
+  align-items: center !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid var(--freshdesk-border) !important;
+  border-radius: 8px !important;
+  padding: 24px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.featured-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  border-color: var(--freshdesk-primary) !important;
+}
+
+.featured-card-title {
+  color: var(--freshdesk-text) !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 8px !important;
+}
+
+.feature-item-container {
+  padding: 20px 16px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.feature-item-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--freshdesk-text);
+  margin-bottom: 12px;
+}
+
+.feature-item-description {
+  font-size: 14px;
+  color: var(--freshdesk-text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================================================
+   HEADER & NAVIGATION STYLES
+   ============================================================================ */
+
+.portal-header {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--freshdesk-border);
+  padding: 16px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.portal-header-wrapper {
+  max-width: 1350px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portal-logo,
+.header-logo {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--freshdesk-primary);
+  text-decoration: none;
+  font-family: var(--font-inter);
+}
+
+.portal-logo:hover,
+.header-logo:hover {
+  color: var(--freshdesk-primary-hover);
+}
+
+/* Navigation Menu */
+.portal-navigation,
+.nav-menu,
+.navigation-tabs,
+nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+nav {
+  background-color: transparent;
+  transition: all 0.2s ease;
+  padding: 16px 0;
+}
+
+.nav-item,
+.nav-link,
+.navigation-tabs li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item a,
+.nav-link,
+.navigation-tabs a,
+nav a {
+  color: var(--freshdesk-text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: var(--freshdesk-radius);
+  transition: all 0.2s ease;
+  font-family: var(--font-inter);
+}
+
+.nav-item a:hover,
+.nav-link:hover,
+.navigation-tabs a:hover,
+nav a:hover {
+  color: var(--freshdesk-primary);
+  background-color: var(--freshdesk-hover);
+}
+
+.nav-item.active a,
+.nav-link.active,
+.navigation-tabs .active a {
+  color: var(--freshdesk-primary);
+  font-weight: 600;
+  border-bottom: 2px solid var(--freshdesk-primary);
+}
+
+/* Search Box */
+.portal-search,
+.search-box,
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: var(--freshdesk-radius);
+  padding: 6px 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.portal-search input,
+.search-box input,
+.search-container input {
+  flex: 1;
+  border: none !important;
+  background: transparent !important;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: #000000 !important;
+  outline: none !important;
+  padding: 6px 4px !important;
+  margin: 0 !important;
+}
+
+.portal-search input::placeholder,
+.search-box input::placeholder,
+.search-container input::placeholder {
+  color: #4B5563 !important;
+  opacity: 1 !important;
+}
+
+.portal-search input:focus,
+.search-box input:focus,
+.search-container input:focus {
+  border-color: var(--freshdesk-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Search on purple background */
+.fw-helpcenter .portal-search,
+.fw-helpcenter .search-box,
+.fw-helpcenter .search-container {
+  background-color: #FFFFFF;
+  border: 1px solid #D1D5DB;
+}
+
+.fw-helpcenter .portal-search input,
+.fw-helpcenter .search-box input,
+.fw-helpcenter .search-container input {
+  color: #000000 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.fw-helpcenter .portal-search input::placeholder,
+.fw-helpcenter .search-box input::placeholder,
+.fw-helpcenter .search-container input::placeholder {
+  color: #4B5563 !important;
+  opacity: 1 !important;
+}
+
+.fw-helpcenter .portal-search input:focus,
+.fw-helpcenter .search-box input:focus,
+.fw-helpcenter .search-container input:focus {
+  border-color: var(--freshdesk-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Fallback styling for any hero search input within fw-helpcenter */
+.fw-helpcenter input[type="search"],
+.fw-helpcenter input[type="text"] {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+  border: 1px solid #D1D5DB !important;
+  border-radius: 9999px !important;
+  padding: 10px 16px !important;
+  outline: none !important;
+}
+
+.fw-helpcenter input[type="search"]::placeholder,
+.fw-helpcenter input[type="text"]::placeholder {
+  color: #4B5563 !important;
+  opacity: 1 !important;
+}
+
+.fw-helpcenter input[type="search"]:focus,
+.fw-helpcenter input[type="text"]:focus {
+  border-color: var(--freshdesk-primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+.portal-search:focus-within,
+.search-box:focus-within,
+.search-container:focus-within {
+  border-color: var(--freshdesk-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ============================================================================
+   MAIN CONTENT AREA
+   ============================================================================ */
+
+.portal-main,
+.main-content,
+.portal-content,
+.main-container,
+.container {
+  background-color: var(--freshdesk-background);
+  padding: 20px 24px;
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.portal-container,
+.main-container,
+.container {
+  padding: 0 24px;
+}
+
+.portal-section {
+  margin-bottom: 24px;
+}
+
+/* ============================================================================
+   BUTTON STYLES (Portal Classes Only - No Global Selectors)
+   ============================================================================ */
+
+.btn,
+.btn-primary,
+.portal-button,
+.portal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--freshdesk-primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--freshdesk-radius);
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: var(--freshdesk-shadow);
+  line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.portal-button:hover,
+.portal-btn:hover {
+  background-color: var(--freshdesk-primary-hover);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active,
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible,
+.portal-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.btn:disabled {
+  background-color: #A5B4FC;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Secondary Buttons */
+.btn-secondary,
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--freshdesk-border);
+  color: var(--freshdesk-text);
+}
+
+.btn-secondary:hover,
+.btn-outline:hover {
+  background-color: var(--freshdesk-hover);
+  border-color: var(--freshdesk-primary);
+  color: var(--freshdesk-primary);
+}
+
+/* Danger Buttons */
+.btn-danger,
+.btn-destructive {
+  background-color: var(--freshdesk-status-error);
+  color: #FFFFFF;
+}
+
+.btn-danger:hover,
+.btn-destructive:hover {
+  background-color: #DC2626;
+}
+
+/* Ghost/Link Buttons */
+.btn-ghost,
+.btn-link,
+a.btn-link {
+  background-color: transparent;
+  color: var(--freshdesk-primary);
+  box-shadow: none;
+  padding: 8px 0;
+}
+
+.btn-ghost:hover,
+.btn-link:hover,
+a.btn-link:hover {
+  color: var(--freshdesk-primary-hover);
+  text-decoration: underline;
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  height: 32px;
+}
+
+.btn-lg,
+.btn-large {
+  padding: 12px 24px;
+  font-size: 16px;
+  height: 48px;
+}
+
+/* ============================================================================
+   FORM ELEMENTS
+   ============================================================================ */
+
+.portal-form input[type="text"],
+.portal-form input[type="email"],
+.portal-form input[type="password"],
+.portal-form input[type="search"],
+.portal-form input[type="tel"],
+.portal-form input[type="url"],
+.portal-form input[type="date"],
+.portal-form input[type="number"],
+.portal-form textarea,
+.portal-form select,
+.form-control,
+.input-field {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--freshdesk-border);
+  border-radius: var(--freshdesk-radius);
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--freshdesk-text);
+  background-color: var(--freshdesk-background);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.portal-form input[type="text"]::placeholder,
+.portal-form input[type="email"]::placeholder,
+.portal-form input[type="password"]::placeholder,
+.portal-form input[type="search"]::placeholder,
+.portal-form input[type="tel"]::placeholder,
+.portal-form input[type="url"]::placeholder,
+.portal-form textarea::placeholder {
+  color: var(--freshdesk-text-light);
+}
+
+.portal-form input[type="text"]:hover:not(:disabled),
+.portal-form input[type="email"]:hover:not(:disabled),
+.portal-form input[type="password"]:hover:not(:disabled),
+.portal-form input[type="search"]:hover:not(:disabled),
+.portal-form input[type="tel"]:hover:not(:disabled),
+.portal-form input[type="url"]:hover:not(:disabled),
+.portal-form textarea:hover:not(:disabled),
+.portal-form select:hover:not(:disabled) {
+  border-color: var(--freshdesk-text-secondary);
+}
+
+.portal-form input[type="text"]:focus,
+.portal-form input[type="email"]:focus,
+.portal-form input[type="password"]:focus,
+.portal-form input[type="search"]:focus,
+.portal-form input[type="tel"]:focus,
+.portal-form input[type="url"]:focus,
+.portal-form textarea:focus,
+.portal-form select:focus {
+  outline: none;
+  border-color: var(--freshdesk-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.portal-form input[type="text"]:disabled,
+.portal-form input[type="email"]:disabled,
+.portal-form input[type="password"]:disabled,
+.portal-form input[type="search"]:disabled,
+.portal-form input[type="tel"]:disabled,
+.portal-form input[type="url"]:disabled,
+.portal-form textarea:disabled,
+.portal-form select:disabled {
+  background-color: var(--freshdesk-hover);
+  color: var(--freshdesk-text-light);
+  cursor: not-allowed;
+}
+
+.portal-form input[type="checkbox"],
+.portal-form input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--freshdesk-primary);
+  cursor: pointer;
+}
+
+.portal-form label,
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--freshdesk-text);
+  font-family: var(--font-inter);
+}
+
+.form-group,
+.field-group {
+  margin-bottom: 24px;
+}
+
+.help-text,
+.form-help,
+.form-hint {
+  font-size: 12px;
+  color: var(--freshdesk-text-secondary);
+  margin-top: 4px;
+}
+
+/* ============================================================================
+   CARD & CONTENT STYLES
+   ============================================================================ */
+
+.card,
+.article-card,
+.category-card,
+.widget {
+  background-color: var(--freshdesk-background);
+  border: 1px solid var(--freshdesk-border);
+  border-radius: var(--freshdesk-radius);
+  padding: 24px;
+  box-shadow: var(--freshdesk-shadow);
+  transition: all 0.2s ease;
+}
+
+.card:hover,
+.article-card:hover,
+.category-card:hover,
+.widget:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--freshdesk-primary);
+}
+
+.card-title,
+.article-title,
+.widget-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--freshdesk-text);
+  margin: 0 0 12px 0;
+  font-family: var(--font-inter);
+}
+
+.card-description,
+.article-description,
+.widget-description {
+  font-size: 14px;
+  color: var(--freshdesk-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.card-meta,
+.article-meta {
+  font-size: 12px;
+  color: var(--freshdesk-text-light);
+  margin-top: 12px;
+}
+
+/* ============================================================================
+   ARTICLE LIST & SEARCH RESULTS
+   ============================================================================ */
+
+.article-list,
+.search-results,
+.category-articles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.article-list-item,
+.search-result-item,
+.article-item {
+  padding: 20px;
+  border-bottom: 1px solid var(--freshdesk-border);
+  transition: all 0.2s ease;
+}
+
+.article-list-item:hover,
+.search-result-item:hover {
+  background-color: var(--freshdesk-hover);
+}
+
+.article-list-item a,
+.search-result-item a,
+.article-item a {
+  color: var(--freshdesk-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.article-list-item a:hover,
+.search-result-item a:hover,
+.article-item a:hover {
+  color: var(--freshdesk-primary-hover);
+  text-decoration: underline;
+}
+
+.article-count,
+.result-count {
+  font-size: 12px;
+  color: var(--freshdesk-text-light);
+  margin-top: 8px;
+}
+
+/* ============================================================================
+   CATEGORY STYLES
+   ============================================================================ */
+
+.category-grid,
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.category-item,
+.category-box {
+  background-color: var(--freshdesk-background);
+  border: 2px solid var(--freshdesk-border);
+  border-radius: var(--freshdesk-radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-item:hover,
+.category-box:hover {
+  border-color: var(--freshdesk-primary);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+.category-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  color: var(--freshdesk-primary);
+}
+
+.category-name,
+.category-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--freshdesk-text);
+  margin-bottom: 8px;
+}
+
+.category-description {
+  font-size: 13px;
+  color: var(--freshdesk-text-secondary);
+  line-height: 1.5;
+}
+
+.category-article-count {
+  font-size: 12px;
+  color: var(--freshdesk-text-light);
+  margin-top: 12px;
+}
+
+/* ============================================================================
+   FOOTER STYLES
+   ============================================================================ */
+
+.portal-footer,
+footer {
+  background-color: var(--freshdesk-background-dark);
+  color: #FFFFFF;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 60px 24px 24px;
+  margin-top: 80px;
+  font-family: var(--font-inter);
+}
+
+.portal-footer-container,
+.footer-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.portal-footer-content,
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3,
+.footer-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-section ul,
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-section a,
+.footer-links a,
+.footer-section a {
+  color: #FFFFFF;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover,
+.footer-links a:hover {
+  color: var(--freshdesk-primary-light);
+}
+
+.portal-footer-bottom,
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+.portal-copyright {
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+/* ============================================================================
+   STATUS & ALERT MESSAGES
+   ============================================================================ */
+
+.alert,
+.message,
+.notification {
+  padding: 16px;
+  border-radius: var(--freshdesk-radius);
+  border-left: 4px solid;
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-family: var(--font-inter);
+}
+
+.alert-success,
+.message-success,
+.notification-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  border-color: var(--freshdesk-status-success);
+  color: #15803d;
+}
+
+.alert-error,
+.message-error,
+.notification-error,
+.alert-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: var(--freshdesk-status-error);
+  color: #b91c1c;
+}
+
+.alert-warning,
+.message-warning,
+.notification-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: var(--freshdesk-status-warning);
+  color: #b45309;
+}
+
+.alert-info,
+.message-info,
+.notification-info {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--freshdesk-status-info);
+  color: #1e40af;
+}
+
+/* ============================================================================
+   BADGE & TAG STYLES
+   ============================================================================ */
+
+.badge,
+.tag,
+.label {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: var(--freshdesk-primary-light);
+  color: var(--freshdesk-primary);
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-family: var(--font-inter);
+}
+
+.badge-primary {
+  background-color: var(--freshdesk-primary-light);
+  color: var(--freshdesk-primary);
+}
+
+.badge-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #15803d;
+}
+
+.badge-danger,
+.badge-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+}
+
+.badge-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #b45309;
+}
+
+/* ============================================================================
+   BREADCRUMB STYLES
+   ============================================================================ */
+
+.breadcrumb,
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-item,
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item a,
+.breadcrumb a {
+  color: var(--freshdesk-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover,
+.breadcrumb a:hover {
+  color: var(--freshdesk-primary-hover);
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: var(--freshdesk-text-light);
+  margin: 0 8px;
+}
+
+.breadcrumb-item.active {
+  color: var(--freshdesk-text);
+  font-weight: 600;
+}
+
+/* ============================================================================
+   PAGINATION STYLES
+   ============================================================================ */
+
+.pagination,
+.paging {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 40px 0;
+  list-style: none;
+  padding: 0;
+  align-items: center;
+}
+
+.pagination-item,
+.paging-item {
+  display: flex;
+}
+
+.pagination-link,
+.paging-link,
+.pagination a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--freshdesk-border);
+  border-radius: var(--freshdesk-radius);
+  color: var(--freshdesk-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: var(--font-inter);
+  font-size: 14px;
+}
+
+.pagination-link:hover,
+.paging-link:hover,
+.pagination a:hover {
+  background-color: var(--freshdesk-hover);
+  border-color: var(--freshdesk-primary);
+  color: var(--freshdesk-primary);
+}
+
+.pagination-link.active,
+.paging-link.active,
+.pagination .active a {
+  background-color: var(--freshdesk-primary);
+  color: #FFFFFF;
+  border-color: var(--freshdesk-primary);
+}
+
+.pagination-link.disabled,
+.pagination-link:disabled {
+  color: var(--freshdesk-text-light);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ============================================================================
+   ACCESSIBILITY & FOCUS STYLES
+   ============================================================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--freshdesk-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--freshdesk-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--freshdesk-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--freshdesk-primary-hover);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .portal-header {
+    padding: 12px 16px;
+  }
+
+  .portal-main,
+  .main-content {
+    padding: 24px 16px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  .portal-footer-content,
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .portal-footer-bottom,
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  .pagination {
+    gap: 4px;
+  }
+
+  .pagination-link,
+  .pagination a {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .nav-menu,
+  .navigation-tabs {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1, .h1 {
+    font-size: 24px;
+  }
+
+  h2, .h2 {
+    font-size: 20px;
+  }
+
+  h3, .h3 {
+    font-size: 18px;
+  }
+
+  .portal-header {
+    padding: 12px;
+  }
+
+  .portal-footer-content,
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card,
+  .article-card {
+    padding: 16px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .portal-header,
+  .portal-footer,
+  footer,
+  .navbar,
+  .sidebar,
+  button,
+  .btn {
+    display: none;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

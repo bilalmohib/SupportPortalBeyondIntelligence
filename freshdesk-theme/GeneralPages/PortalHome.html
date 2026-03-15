@@ -13,20 +13,20 @@
   </div>
 </section>
 
-<section class="container-fluid px-0 mt-16">
+<section class="container-fluid px-0 featured-section">
   <div class="container">
     <div class="row justify-content-center">
       {%for card in portal.home_cards %}
         {% if card.show %}
           <div class="col-md-6 col-xl-3 mb-8">
-            <a class="card fw-horizontal" href="{{card.url}}" aria-label="{{card.label}}" data-customize-id="{{card.id}}">
+            <a class="card fw-horizontal featured-card" href="{{card.url}}" aria-label="{{card.label}}" data-customize-id="{{card.id}}">
               <div class="col-3 px-0 my-auto text-center">
                 <div class="fw-category-icon">
                   {{ card.image }}
                 </div>
               </div>
               <div class="card-body col-9">
-                <h2 class="mt-0 card-title fs-18 line-clamp-2">{{card.label}}</h2>
+                <h2 class="mt-0 card-title fs-18 line-clamp-2 featured-card-title">{{card.label}}</h2>
                 <p class="line-clamp-3">{{card.description}}</p>
               </div>
             </a>
