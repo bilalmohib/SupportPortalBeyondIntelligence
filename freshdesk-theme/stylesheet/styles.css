@@ -392,7 +392,7 @@ nav {
 nav {
   background-color: transparent;
   transition: all 0.2s ease;
-  padding: 16px 0;
+  padding: 8px 0 4px 0;
 }
 
 .nav-item,
@@ -430,6 +430,53 @@ nav a:hover {
   color: var(--freshdesk-primary);
   font-weight: 600;
   border-bottom: 2px solid var(--freshdesk-primary);
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Force active tab in portal header to have no filled background */
+.portal-header .nav-item.active,
+.portal-header .nav-item.active a,
+.portal-header .nav-link.active,
+.portal-header .navigation-tabs .active,
+.portal-header .navigation-tabs .active a {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--freshdesk-primary) !important;
+}
+
+/* Remove filled primary background from active "Home" tab on support home page */
+body.support-home .navigation-tabs li.active,
+body.support-home .navigation-tabs li.active a,
+body.support-home .nav-item.active,
+body.support-home .nav-item.active a {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--freshdesk-primary) !important;
+  border-radius: 0 !important;
+}
+
+/* Hard override: any active nav item inside our custom header wrapper must never have a filled background */
+.fw-nav-wrapper .nav-item.active,
+.fw-nav-wrapper .nav-item.active a {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Ensure current selected nav tab text is primary (override Bootstrap defaults) */
+.fw-nav-wrapper .navbar-nav .nav-link.active,
+.fw-nav-wrapper .navbar-nav .nav-item.active > .nav-link {
+  color: var(--freshdesk-primary) !important;
+  font-weight: 600;
+}
+
+/* Tighten gap between header nav and purple bar on support pages */
+.fw-nav-wrapper {
+  margin-bottom: 0 !important;
+}
+
+.fw-searchbar-wrapper {
+  margin-top: -8px !important;
 }
 
 /* Search Box */
@@ -484,6 +531,26 @@ nav a:hover {
   border: 1px solid #D1D5DB;
 }
 
+/* Sticky search bars (e.g. Solutions, Tickets, Discussions) on purple background */
+.fw-searchbar-wrapper .portal-search,
+.fw-searchbar-wrapper .search-box,
+.fw-searchbar-wrapper .search-container {
+  background-color: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: var(--freshdesk-radius);
+}
+
+/* Fallback: if Freshdesk renders a bare input instead of wrapped search container */
+.fw-searchbar-wrapper input[type="search"],
+.fw-searchbar-wrapper input[type="text"] {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+  border: 1px solid #D1D5DB !important;
+  border-radius: var(--freshdesk-radius) !important;
+  padding: 10px 16px !important;
+  outline: none !important;
+}
+
 .fw-helpcenter .portal-search input,
 .fw-helpcenter .search-box input,
 .fw-helpcenter .search-container input {
@@ -492,9 +559,30 @@ nav a:hover {
   background: transparent !important;
 }
 
+.fw-searchbar-wrapper .portal-search input,
+.fw-searchbar-wrapper .search-box input,
+.fw-searchbar-wrapper .search-container input {
+  color: #000000 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.fw-searchbar-wrapper input[type="search"]::placeholder,
+.fw-searchbar-wrapper input[type="text"]::placeholder {
+  color: #4B5563 !important;
+  opacity: 1 !important;
+}
+
 .fw-helpcenter .portal-search input::placeholder,
 .fw-helpcenter .search-box input::placeholder,
 .fw-helpcenter .search-container input::placeholder {
+  color: #4B5563 !important;
+  opacity: 1 !important;
+}
+
+.fw-searchbar-wrapper .portal-search input::placeholder,
+.fw-searchbar-wrapper .search-box input::placeholder,
+.fw-searchbar-wrapper .search-container input::placeholder {
   color: #4B5563 !important;
   opacity: 1 !important;
 }
@@ -523,13 +611,21 @@ nav a:hover {
   opacity: 1 !important;
 }
 
-/* Focus ring for hero search is applied on container, not input, so icon/button doesn't move */
-
 .portal-search:focus-within,
 .search-box:focus-within,
 .search-container:focus-within {
   border-color: var(--freshdesk-primary);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Layout tweaks for sticky search bars and page titles to remove extra gap
+   between header and purple section on support/solutions and related pages */
+.fw-searchbar-wrapper {
+  margin-top: 0 !important;
+}
+
+.fw-page-title-wrapper {
+  padding-top: 0 !important;
 }
 
 /* ============================================================================
@@ -937,12 +1033,63 @@ a.btn-link:hover {
 
 .portal-footer,
 footer {
-  background-color: var(--freshdesk-background-dark);
-  color: #FFFFFF;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 60px 24px 24px;
-  margin-top: 80px;
+  background-color: #FFFFFF;
+  color: #111827;
+  border-top: 1px solid #E5E7EB;
+  padding: 16px 24px;
+  margin-top: 0;
   font-family: var(--font-inter);
+}
+
+/* Freshdesk footer partial uses these classes; ensure full-width dark footer */
+footer.container-fluid {
+  width: 100%;
+}
+
+footer .fw-contact-info,
+footer .fw-credit {
+  background-color: transparent;
+}
+
+footer .fw-contacts,
+footer .fw-laws {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Some Freshdesk footer elements render with reduced opacity; force readability */
+footer .fw-contacts,
+footer .fw-laws,
+footer .fw-contacts *,
+footer .fw-laws * {
+  opacity: 1 !important;
+  color: #111827 !important;
+}
+
+footer .fw-credit {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+footer .fw-laws {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+footer .fw-laws a,
+footer .fw-laws a:visited {
+  color: #111827;
+  text-decoration: none;
+}
+
+footer .fw-laws a:hover {
+  color: #111827;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .portal-footer-container,
