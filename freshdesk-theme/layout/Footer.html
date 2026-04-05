@@ -1,12 +1,44 @@
 {% if  portal.current_page != "csat_survey" %}
- <footer class="container-fluid px-0">
-   <section class="fw-credit">
-     <nav class="fw-laws">
+<footer class="portal-footer">
+  <div class="portal-footer-container">
+    <div class="portal-footer-content">
+      <section class="footer-section">
+        <h3 class="footer-title">{{ portal.name | escape_once }}</h3>
+        <p>AI-powered support experiences for your customers and teams.</p>
+      </section>
+
+      <section class="footer-section">
+        <h3 class="footer-title">Resources</h3>
+        <ul class="footer-links">
+          <li><a href="{{ portal.solutions_home_url }}">Knowledge base</a></li>
+          {% if portal.has_forums %}
+            <li><a href="{{ portal.discussions_home_url }}">Community forums</a></li>
+          {% endif %}
+          {% if portal.has_tickets %}
+            <li><a href="{{ portal.new_ticket_url }}">Submit a ticket</a></li>
+          {% endif %}
+        </ul>
+      </section>
+
+      <section class="footer-section">
+        <h3 class="footer-title">Support</h3>
+        <ul class="footer-links">
+          <li><a href="{{ portal.home_url }}">Support home</a></li>
+          <li><a href="mailto:support@beyondintelligence.ai">support@beyondintelligence.ai</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="portal-footer-bottom">
+      <div class="portal-copyright">
         {{ portal | footer_copyright }}
+      </div>
+      <nav class="footer-links footer-legal">
         {{ portal | footer_cookie_law }}
         {{ portal | footer_privacy_law }}
         {{ portal | default_cookie_policy_settings }}
-     </nav>
-   </section>
- </footer>
+      </nav>
+    </div>
+  </div>
+</footer>
 {% endif %}

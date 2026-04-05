@@ -1036,8 +1036,8 @@ footer {
   background-color: #FFFFFF;
   color: #111827;
   border-top: 1px solid #E5E7EB;
-  padding: 16px 24px;
-  margin-top: 0;
+  padding: 60px 24px 24px;
+  margin-top: 80px;
   font-family: var(--font-inter);
 }
 
@@ -1065,6 +1065,35 @@ footer .fw-contacts *,
 footer .fw-laws * {
   opacity: 1 !important;
   color: #111827 !important;
+}
+
+/* Hard override: all text and links inside the support footer must be black */
+.portal-footer,
+.portal-footer * ,
+footer,
+footer * {
+  color: #111827 !important;
+}
+
+/* If Freshdesk renders an extra default footer after our custom one, hide it */
+.portal-footer + footer,
+.portal-footer ~ footer {
+  display: none !important;
+}
+
+.portal-footer a,
+.portal-footer a:visited,
+footer a,
+footer a:visited {
+  color: #111827 !important;
+  text-decoration: none;
+}
+
+.portal-footer a:hover,
+footer a:hover {
+  color: #111827 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 footer .fw-credit {
