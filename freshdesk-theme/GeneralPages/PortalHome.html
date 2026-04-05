@@ -61,7 +61,7 @@
 <section class="container-fluid px-0 home-knowledge-section">
   <div class="container">
     <div class="home-knowledge-heading text-center">
-      <h2 class="home-knowledge-title">{{ 'portal_translations.home.solutions' | t }}</h2>
+      <h2 class="home-knowledge-title" style="font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; margin: 0 0 10px;">{{ 'portal_translations.home.solutions' | t }}</h2>
       <a class="home-knowledge-link" href="{{ portal.solutions_home_url }}">{{ 'portal_translations.home.view_articles' | t }}</a>
     </div>
 
@@ -153,35 +153,35 @@
     {% if articles.size > 0 %}
     <div class="col-12 mb-32">
 
-      <div class="fw-section-heading row mb-16">
-        <div class="col-md-8 text-center text-lg-start">
-          <h3>{{ 'portal_translations.home.popular_articles' | t }}</h3>
+      <div class="fw-section-heading row mb-16 home-popular-heading">
+        <div class="col-12 col-md-8 text-center text-lg-start">
+          <h3 class="home-popular-title" style="font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; margin: 0;">{{ 'portal_translations.home.popular_articles' | t }}</h3>
         </div>
 
-        <div class="col-md-4 text-center text-end">
-          <a href="{{portal.solutions_home_url}}">
+        <div class="col-12 col-md-4 home-popular-link-wrap">
+          <a class="home-popular-link" href="{{portal.solutions_home_url}}">
             {{ 'portal_translations.home.view_articles' | t }}
           </a>
         </div>
       </div>
 
-      <div class="fw-articles">
-        <div class="row">
+      <div class="fw-articles home-popular-articles">
+        <div class="row home-popular-articles-grid">
 
           {% for article in articles %}
-          <a class="col-md-6 fw-article-info d-flex" href="{{article.url}}" aria-label="{{article.title}}">
-            <div class="pt-4 pe-8">
-              <span class="icon-article pr-8"></span>
-            </div>
-
-            <div>
-              <p class="fs-18 semi-bold line-clamp-2">{{article.title}}</p>
-
-              <p class="line-clamp-2 fw-meta-info">
-                {{ article | solution_author_info: 'portal_home' }}
-              </p>
-            </div>
-          </a>
+          <div class="col-12 col-md-6">
+            <a class="fw-article-info d-flex home-popular-article-card" href="{{article.url}}" aria-label="{{article.title}}">
+              <div class="home-popular-article-icon-wrap">
+                <span class="icon-article home-popular-article-icon"></span>
+              </div>
+              <div class="home-popular-article-copy">
+                <p class="semi-bold line-clamp-2 home-popular-article-title">{{article.title}}</p>
+                <p class="line-clamp-2 fw-meta-info home-popular-article-meta">
+                  {{ article | solution_author_info: 'portal_home' }}
+                </p>
+              </div>
+            </a>
+          </div>
           {% endfor %}
 
         </div>
