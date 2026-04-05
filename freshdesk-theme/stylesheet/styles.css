@@ -269,12 +269,20 @@ body.category-page {
    ============================================================================ */
 
 /* Headings on primary background sections should be white */
+.fw-helpcenter h1,
 .fw-helpcenter h2,
 .fw-helpcenter h3,
 .fw-helpcenter h4,
 .fw-helpcenter h5,
 .fw-helpcenter h6 {
   color: #FFFFFF !important;
+}
+
+/* More space between hero title (“Hi, how can we help you?”) and search field */
+.fw-helpcenter h1,
+.fw-helpcenter h2,
+.fw-helpcenter h3 {
+  margin-bottom: 1rem !important;
 }
 
 /* Featured items section headings */
@@ -294,45 +302,74 @@ body.category-page {
   margin-top: 16px;
 }
 
+/* Home featured cards — calm, spacious “Apple-like” surface + typography */
 .featured-section {
-  background-color: transparent;
-  padding: 80px 0 40px 0;
-  margin-top: 60px;
+  background-color: #f5f5f7;
+  padding: 96px 0 88px;
+  margin-top: 0;
 }
+
+/* Featured cards use the same .container as navbar (max-width 1350px) — no viewport-edge bleed */
 
 .featured-card {
   display: flex !important;
   align-items: center !important;
-  background-color: #FFFFFF !important;
-  border: 1px solid var(--freshdesk-border) !important;
-  border-radius: 8px !important;
-  padding: 24px !important;
+  height: 100%;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: 18px !important;
+  padding: 28px 28px 28px 24px !important;
   text-decoration: none !important;
-  transition: all 0.2s ease !important;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.06) !important;
+  transition:
+    transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.45s cubic-bezier(0.25, 0.1, 0.25, 1),
+    border-color 0.35s ease !important;
 }
 
 .featured-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-  border-color: var(--freshdesk-primary) !important;
+  transform: translateY(-3px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 24px 48px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.featured-card:active {
+  transform: translateY(-1px);
 }
 
 .featured-card-title {
-  color: var(--freshdesk-text) !important;
-  font-weight: 700 !important;
-  font-size: 16px !important;
-  margin-bottom: 8px !important;
+  color: #1d1d1f !important;
+  font-weight: 600 !important;
+  font-size: 21px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.022em !important;
+  margin-bottom: 0.35em !important;
+  font-family: var(--font-inter) !important;
+}
+
+.featured-card .card-body p {
+  margin: 0 !important;
+  color: #6e6e73 !important;
+  font-size: 17px !important;
+  line-height: 1.47059 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.011em !important;
 }
 
 .featured-card-icon--account {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
+  min-height: 64px;
 }
 
 .featured-card-icon__svg {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   max-width: 100%;
 }
 
@@ -422,7 +459,7 @@ nav a {
   color: var(--freshdesk-text);
   text-decoration: none;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   padding: 8px 12px;
   border-radius: var(--freshdesk-radius);
   transition: all 0.2s ease;
@@ -435,6 +472,7 @@ nav a {
 nav a:hover {
   color: var(--freshdesk-primary);
   background-color: var(--freshdesk-hover);
+  text-decoration: underline;
 }
 
 .nav-item.active a,
@@ -481,6 +519,19 @@ body.support-home .nav-item.active a {
 .fw-nav-wrapper .navbar-nav .nav-item.active > .nav-link {
   color: var(--freshdesk-primary) !important;
   font-weight: 600;
+}
+
+/* Header: larger nav + auth links + ticket button (override Bootstrap 14px) */
+.fw-nav-wrapper .navbar-nav .nav-link,
+.fw-nav-wrapper .navbar-nav .nav-item:not(.dropdown) > a {
+  font-size: 16px !important;
+}
+
+.fw-nav-wrapper .navbar-nav .btn,
+.fw-nav-wrapper .navbar-nav .btn-outline-primary,
+.fw-nav-wrapper .fw-nav-dropdown-wrapper .nav-link,
+.fw-nav-wrapper .fw-nav-dropdown-wrapper a {
+  font-size: 16px !important;
 }
 
 /* Tighten gap between header nav and purple bar on support pages */
@@ -1044,13 +1095,29 @@ a.btn-link:hover {
    FOOTER STYLES
    ============================================================================ */
 
+/* Pull main content and footer together on support pages */
+main.fw-main-wrapper {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .portal-footer,
-footer {
+footer.portal-footer {
   background-color: #FFFFFF;
   color: #111827;
   border-top: 1px solid #E5E7EB;
-  padding: 60px 24px 24px;
-  margin-top: 80px;
+  padding: 32px 24px 24px;
+  margin-top: 0;
+  font-family: var(--font-inter);
+}
+
+/* Legacy / Freshdesk-injected footers without .portal-footer */
+footer:not(.portal-footer) {
+  background-color: #FFFFFF;
+  color: #111827;
+  border-top: 1px solid #E5E7EB;
+  padding: 24px;
+  margin-top: 0;
   font-family: var(--font-inter);
 }
 
@@ -1138,6 +1205,7 @@ footer .fw-laws a:hover {
 .footer-container {
   max-width: 1350px;
   margin: 0 auto;
+  padding-top: 80px;
 }
 
 .portal-footer-content,

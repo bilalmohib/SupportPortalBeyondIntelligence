@@ -15,8 +15,8 @@
 
 <section class="container-fluid px-0 featured-section">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-xl-3 mb-8">
+    <div class="row gy-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <a class="card fw-horizontal featured-card" href="https://www.beyondintelligence.ai/magic-link/login" aria-label="Manage your account">
           <div class="col-3 px-0 my-auto text-center">
             <div class="fw-category-icon featured-card-icon featured-card-icon--account" aria-hidden="true">
@@ -36,7 +36,7 @@
       </div>
       {%for card in portal.home_cards %}
         {% if card.show %}
-          <div class="col-md-6 col-xl-3 mb-8">
+          <div class="col-12 col-md-6 col-lg-4">
             <a class="card fw-horizontal featured-card" href="{{card.url}}" aria-label="{{card.label}}" data-customize-id="{{card.id}}">
               <div class="col-3 px-0 my-auto text-center">
                 <div class="fw-category-icon">
@@ -58,33 +58,43 @@
 {% assign solutionCards = 1 %}
 {% assign solutionCardsLimit = 3 %}
 {% if portal.has_solutions and solutionCardsLimit != 0 %}
-<section class="container-fluid px-0">
+<section class="container-fluid px-0 home-knowledge-section">
   <div class="container">
-    <div class="fw-section-heading text-center mt-28 mt-md-44 mb-24 mb-md-16">
-      <h2>{{ 'portal_translations.home.solutions' | t }}</h2>
-      <a href="{{ portal.solutions_home_url }}">{{ 'portal_translations.home.view_articles' | t }}</a>
+    <div class="home-knowledge-heading text-center">
+      <h2 class="home-knowledge-title">{{ 'portal_translations.home.solutions' | t }}</h2>
+      <a class="home-knowledge-link" href="{{ portal.solutions_home_url }}">{{ 'portal_translations.home.view_articles' | t }}</a>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row gy-4 home-knowledge-grid">
       {% for category in portal.solution_categories %}
         {% if solutionCards > solutionCardsLimit %}{% break %}{% endif %}
         {% if category.folders_count > 0 %}
           {% for folder in category.folders %}
+            {% assign kb_icon_slot = solutionCards %}
             {% assign solutionCards = solutionCards | plus:1 %}
+            {% assign kb_icon_mod = kb_icon_slot | modulo: 3 %}
 
-            <div class="col-md-4 col-xl-3 mb-8">
-              <a class="card h-100 fw-kbase-card" aria-label="{{ category.name | escape_once }}" href="{{ category.url }}">
-                <div class="px-0 my-auto fw-icon-holder">
+            <div class="col-12 col-md-6 col-lg-4">
+              <a class="card h-100 home-kbase-card" aria-label="{{ category.name | escape_once }}" href="{{ category.url }}">
+                <div class="home-kbase-card__visual" aria-hidden="true">
                   {% if category.icon %}
-                    <img src="{{category.icon}}" class="img-fluid" alt="{{ category.name | escape_once }}">
+                    <img src="{{ category.icon }}" class="home-kbase-card__img img-fluid" alt="">
                   {% else %}
-                    <span class="icon-category"></span>
+                    {% if kb_icon_mod == 1 %}
+                      <svg class="home-kbase-card__svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 20h28v24H14V20z" stroke="#3c3c43" stroke-width="1.75" stroke-linejoin="round"/><path d="M20 14h16v6H20v-6z" stroke="#22c55e" stroke-width="1.75" stroke-linejoin="round"/><path d="M22 26h12M22 32h8" stroke="#3c3c43" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    {% elsif kb_icon_mod == 2 %}
+                      <svg class="home-kbase-card__svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 38c4-8 10-14 16-14s12 6 16 14" stroke="#3c3c43" stroke-width="1.75" stroke-linecap="round"/><path d="M18 22l6-4 8 10 6-8 8 6" stroke="#22c55e" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="14" r="3" stroke="#3c3c43" stroke-width="1.5"/></svg>
+                    {% else %}
+                      <svg class="home-kbase-card__svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="18" width="32" height="22" rx="3" stroke="#3c3c43" stroke-width="1.75"/><path d="M16 26h24M16 32h14" stroke="#3c3c43" stroke-width="1.5" stroke-linecap="round"/><circle cx="36" cy="36" r="8" stroke="#22c55e" stroke-width="1.75"/><path d="M36 33v6M33 36h6" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    {% endif %}
                   {% endif %}
                 </div>
 
-                <div class="card-body">
-                  <p class="mt-0 card-title fs-18 line-clamp-2">{{ category.name | escape_once }}</p>
-                  <p class="line-clamp-2">{{ category.description }}</p>
+                <div class="card-body home-kbase-card__body">
+                  <p class="home-kbase-card__name line-clamp-2">{{ category.name | escape_once }}</p>
+                  {% if category.description != blank %}
+                    <p class="home-kbase-card__desc line-clamp-2">{{ category.description }}</p>
+                  {% endif %}
                 </div>
               </a>
             </div>
@@ -108,7 +118,7 @@
       <a href="{{ portal.discussions_home_url }}">{{ 'portal_translations.home.view_topics' | t }}</a>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row gy-4">
       {% for category in portal.forum_categories %}
         {% if forumCards > forumCardsLimit %}{% break %}{% endif %}
 
@@ -116,7 +126,7 @@
           {% for forum in category.forums %}
             {% assign forumCards = forumCards | plus:1 %}
 
-            <div class="col-md-4 col-xl-3 mb-8">
+            <div class="col-12 col-md-6 col-lg-4">
               <a class="card h-100" href="{{ category.url }}" aria-label="{{ category.name | escape_once }}">
                 <div class="card-body">
                   <p class="mt-0 card-title fs-18 line-clamp-2">{{ category.name | escape_once }}</p>
@@ -141,7 +151,7 @@
     {% assign articles = portal | popular_articles:4 %}
 
     {% if articles.size > 0 %}
-    <div class="col-xl-9 mx-auto mb-32">
+    <div class="col-12 mb-32">
 
       <div class="fw-section-heading row mb-16">
         <div class="col-md-8 text-center text-lg-start">
