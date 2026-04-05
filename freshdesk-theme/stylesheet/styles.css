@@ -323,6 +323,19 @@ body.category-page {
   margin-bottom: 8px !important;
 }
 
+.featured-card-icon--account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+}
+
+.featured-card-icon__svg {
+  width: 48px;
+  height: 48px;
+  max-width: 100%;
+}
+
 .feature-item-container {
   padding: 20px 16px;
   background-color: #FFFFFF;

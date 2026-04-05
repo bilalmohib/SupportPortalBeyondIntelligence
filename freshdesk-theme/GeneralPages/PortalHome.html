@@ -16,6 +16,24 @@
 <section class="container-fluid px-0 featured-section">
   <div class="container">
     <div class="row justify-content-center">
+      <div class="col-md-6 col-xl-3 mb-8">
+        <a class="card fw-horizontal featured-card" href="https://www.beyondintelligence.ai/magic-link/login" aria-label="Manage your account">
+          <div class="col-3 px-0 my-auto text-center">
+            <div class="fw-category-icon featured-card-icon featured-card-icon--account" aria-hidden="true">
+              <svg class="featured-card-icon__svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                <circle cx="24" cy="18" r="7" stroke="#4B5563" stroke-width="2"/>
+                <path d="M12 40c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+                <path d="M34 10l2 2-1.2 1.2M38 6l2 2-2.8 2.8" stroke="#22C55E" stroke-width="1.75" stroke-linecap="round"/>
+                <circle cx="39" cy="5" r="1.25" fill="#22C55E"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body col-9">
+            <h2 class="mt-0 card-title fs-18 line-clamp-2 featured-card-title">Manage your account</h2>
+            <p class="line-clamp-3">Access your settings and update your child’s information, notifications, or payment details with a secure magic link</p>
+          </div>
+        </a>
+      </div>
       {%for card in portal.home_cards %}
         {% if card.show %}
           <div class="col-md-6 col-xl-3 mb-8">
