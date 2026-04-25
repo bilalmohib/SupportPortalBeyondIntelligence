@@ -1,9 +1,8 @@
-<section>
-  {{ page_message }}
-</section>
+<section>{{ page_message }}</section>
 
 <section class="container-fluid px-0 fw-helpcenter mb-md-n64">
   <div class="container">
+    <h1 class="hero-brand-title">Satori Help center</h1>
     <div class="row">
       <div class="col-md-9 col-lg-6 mx-auto">
         {% assign search_text = 'portal_translations.banner.search_text' | t %}
@@ -17,39 +16,77 @@
   <div class="container">
     <div class="row gy-4">
       <div class="col-12 col-md-6 col-lg-4">
-        <a class="card fw-horizontal featured-card" href="https://www.beyondintelligence.ai/magic-link/login" aria-label="Manage your account">
+        <a
+          class="card fw-horizontal featured-card"
+          href="https://www.beyondintelligence.ai/magic-link/login"
+          aria-label="Manage your account"
+        >
           <div class="col-3 px-0 my-auto text-center">
-            <div class="fw-category-icon featured-card-icon featured-card-icon--account" aria-hidden="true">
-              <svg class="featured-card-icon__svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                <circle cx="24" cy="18" r="7" stroke="#4B5563" stroke-width="2"/>
-                <path d="M12 40c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
-                <path d="M34 10l2 2-1.2 1.2M38 6l2 2-2.8 2.8" stroke="#22C55E" stroke-width="1.75" stroke-linecap="round"/>
-                <circle cx="39" cy="5" r="1.25" fill="#22C55E"/>
+            <div
+              class="fw-category-icon featured-card-icon featured-card-icon--account"
+              aria-hidden="true"
+            >
+              <svg
+                class="featured-card-icon__svg"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+              >
+                <circle
+                  cx="24"
+                  cy="18"
+                  r="7"
+                  stroke="#4B5563"
+                  stroke-width="2"
+                />
+                <path
+                  d="M12 40c0-6.627 5.373-12 12-12s12 5.373 12 12"
+                  stroke="#4B5563"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M34 10l2 2-1.2 1.2M38 6l2 2-2.8 2.8"
+                  stroke="#22C55E"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <circle cx="39" cy="5" r="1.25" fill="#22C55E" />
               </svg>
             </div>
           </div>
           <div class="card-body col-9">
-            <h2 class="mt-0 card-title fs-18 line-clamp-2 featured-card-title">Manage your account</h2>
-            <p class="line-clamp-3">Access your settings and update your child’s information, notifications, or payment details with a secure magic link</p>
+            <h2 class="mt-0 card-title fs-18 line-clamp-2 featured-card-title">
+              Manage your account
+            </h2>
+            <p class="line-clamp-3">
+              Manage your child's profile, notifications, and billing settings.
+            </p>
           </div>
         </a>
       </div>
-      {%for card in portal.home_cards %}
-        {% if card.show %}
-          <div class="col-12 col-md-6 col-lg-4">
-            <a class="card fw-horizontal featured-card" href="{{card.url}}" aria-label="{{card.label}}" data-customize-id="{{card.id}}">
-              <div class="col-3 px-0 my-auto text-center">
-                <div class="fw-category-icon">
-                  {{ card.image }}
-                </div>
-              </div>
-              <div class="card-body col-9">
-                <h2 class="mt-0 card-title fs-18 line-clamp-2 featured-card-title">{{card.label}}</h2>
-                <p class="line-clamp-3">{{card.description}}</p>
-              </div>
-            </a>
+      {% for card in portal.home_cards %}
+      {% if card.show %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <a
+          class="card fw-horizontal featured-card"
+          href="{{card.url}}"
+          aria-label="{{card.label}}"
+          data-customize-id="{{card.id}}"
+        >
+          <div class="col-3 px-0 my-auto text-center">
+            <div class="fw-category-icon">{{ card.image }}</div>
           </div>
-        {% endif %}
+          <div class="card-body col-9">
+            <h2 class="mt-0 card-title fs-18 line-clamp-2 featured-card-title">
+              {{card.label}}
+            </h2>
+            <p class="line-clamp-3">{{card.description}}</p>
+          </div>
+        </a>
+      </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -61,53 +98,161 @@
 <section class="container-fluid px-0 home-knowledge-section">
   <div class="container">
     <div class="home-knowledge-heading text-center">
-      <h2 class="home-knowledge-title" style="font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; margin: 0 0 10px;">{{ 'portal_translations.home.solutions' | t }}</h2>
-      <a class="home-knowledge-link" href="{{ portal.solutions_home_url }}">{{ 'portal_translations.home.view_articles' | t }}</a>
+      <h2
+        class="home-knowledge-title"
+        style="
+          font-size: 40px;
+          line-height: 1.1;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+          margin: 0 0 10px;
+        "
+      >
+        {{ 'portal_translations.home.solutions' | t }}
+      </h2>
+      <a class="home-knowledge-link" href="{{ portal.solutions_home_url }}"
+        >{{ 'portal_translations.home.view_articles' | t }}</a
+      >
     </div>
 
     <div class="row gy-4 home-knowledge-grid">
       {% for category in portal.solution_categories %}
-        {% if solutionCards > solutionCardsLimit %}{% break %}{% endif %}
-        {% if category.folders_count > 0 %}
-          {% for folder in category.folders %}
-            {% assign kb_icon_slot = solutionCards %}
-            {% assign solutionCards = solutionCards | plus:1 %}
-            {% assign kb_icon_mod = kb_icon_slot | modulo: 3 %}
+      {% if solutionCards > solutionCardsLimit %}{% break %}{% endif %}
+      {% if category.folders_count > 0 %}
+      {% for folder in category.folders %}
+      {% assign kb_icon_slot = solutionCards %}
+      {% assign solutionCards = solutionCards | plus:1 %}
+      {% assign kb_icon_mod = kb_icon_slot | modulo: 3 %}
 
-            <div class="col-12 col-md-6 col-lg-4">
-              <a class="card h-100 home-kbase-card" aria-label="{{ category.name | escape_once }}" href="{{ category.url }}">
-                <div class="home-kbase-card__visual" aria-hidden="true">
-                  {% if category.icon %}
-                    <img src="{{ category.icon }}" class="home-kbase-card__img img-fluid" alt="">
-                  {% else %}
-                    {% if kb_icon_mod == 1 %}
-                      <svg class="home-kbase-card__svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 20h28v24H14V20z" stroke="#3c3c43" stroke-width="1.75" stroke-linejoin="round"/><path d="M20 14h16v6H20v-6z" stroke="#22c55e" stroke-width="1.75" stroke-linejoin="round"/><path d="M22 26h12M22 32h8" stroke="#3c3c43" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    {% elsif kb_icon_mod == 2 %}
-                      <svg class="home-kbase-card__svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 38c4-8 10-14 16-14s12 6 16 14" stroke="#3c3c43" stroke-width="1.75" stroke-linecap="round"/><path d="M18 22l6-4 8 10 6-8 8 6" stroke="#22c55e" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="14" r="3" stroke="#3c3c43" stroke-width="1.5"/></svg>
-                    {% else %}
-                      <svg class="home-kbase-card__svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="18" width="32" height="22" rx="3" stroke="#3c3c43" stroke-width="1.75"/><path d="M16 26h24M16 32h14" stroke="#3c3c43" stroke-width="1.5" stroke-linecap="round"/><circle cx="36" cy="36" r="8" stroke="#22c55e" stroke-width="1.75"/><path d="M36 33v6M33 36h6" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    {% endif %}
-                  {% endif %}
-                </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <a
+          class="card h-100 home-kbase-card"
+          aria-label="{{ category.name | escape_once }}"
+          href="{{ category.url }}"
+        >
+          <div class="home-kbase-card__visual" aria-hidden="true">
+            {% if category.icon %}
+            <img
+              src="{{ category.icon }}"
+              class="home-kbase-card__img img-fluid"
+              alt=""
+            />
+            {% else %}
+            {% if kb_icon_mod == 1 %}
+            <svg
+              class="home-kbase-card__svg"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 20h28v24H14V20z"
+                stroke="#3c3c43"
+                stroke-width="1.75"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M20 14h16v6H20v-6z"
+                stroke="#22c55e"
+                stroke-width="1.75"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M22 26h12M22 32h8"
+                stroke="#3c3c43"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            {% elsif kb_icon_mod == 2 %}
+            <svg
+              class="home-kbase-card__svg"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 38c4-8 10-14 16-14s12 6 16 14"
+                stroke="#3c3c43"
+                stroke-width="1.75"
+                stroke-linecap="round"
+              />
+              <path
+                d="M18 22l6-4 8 10 6-8 8 6"
+                stroke="#22c55e"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle
+                cx="40"
+                cy="14"
+                r="3"
+                stroke="#3c3c43"
+                stroke-width="1.5"
+              />
+            </svg>
+            {% else %}
+            <svg
+              class="home-kbase-card__svg"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="12"
+                y="18"
+                width="32"
+                height="22"
+                rx="3"
+                stroke="#3c3c43"
+                stroke-width="1.75"
+              />
+              <path
+                d="M16 26h24M16 32h14"
+                stroke="#3c3c43"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="36"
+                cy="36"
+                r="8"
+                stroke="#22c55e"
+                stroke-width="1.75"
+              />
+              <path
+                d="M36 33v6M33 36h6"
+                stroke="#22c55e"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            {% endif %}
+            {% endif %}
+          </div>
 
-                <div class="card-body home-kbase-card__body">
-                  <p class="home-kbase-card__name line-clamp-2">{{ category.name | escape_once }}</p>
-                  {% if category.description != blank %}
-                    <p class="home-kbase-card__desc line-clamp-2">{{ category.description }}</p>
-                  {% endif %}
-                </div>
-              </a>
-            </div>
+          <div class="card-body home-kbase-card__body">
+            <p class="home-kbase-card__name line-clamp-2">
+              {{ category.name | escape_once }}
+            </p>
+            {% if category.description != blank %}
+            <p class="home-kbase-card__desc line-clamp-2">
+              {{ category.description }}
+            </p>
+            {% endif %}
+          </div>
+        </a>
+      </div>
 
-            {% break %}
-          {% endfor %}
-        {% endif %}
+      {% break %}
+      {% endfor %}
+      {% endif %}
       {% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
-
 {% assign forumCards = 1 %}
 {% assign forumCardsLimit = 3 %}
 {% if portal.has_forums and forumCardsLimit != 0 %}
@@ -115,29 +260,36 @@
   <div class="container">
     <div class="fw-section-heading text-center mt-28 mt-md-44 mb-24 mb-md-16">
       <h2>{{ 'portal_translations.home.forums' | t }}</h2>
-      <a href="{{ portal.discussions_home_url }}">{{ 'portal_translations.home.view_topics' | t }}</a>
+      <a href="{{ portal.discussions_home_url }}"
+        >{{ 'portal_translations.home.view_topics' | t }}</a
+      >
     </div>
 
     <div class="row gy-4">
       {% for category in portal.forum_categories %}
-        {% if forumCards > forumCardsLimit %}{% break %}{% endif %}
+      {% if forumCards > forumCardsLimit %}{% break %}{% endif %}
+      {% if category.forums_count > 0 %}
+      {% for forum in category.forums %}
+      {% assign forumCards = forumCards | plus:1 %}
 
-        {% if category.forums_count > 0 %}
-          {% for forum in category.forums %}
-            {% assign forumCards = forumCards | plus:1 %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <a
+          class="card h-100"
+          href="{{ category.url }}"
+          aria-label="{{ category.name | escape_once }}"
+        >
+          <div class="card-body">
+            <p class="mt-0 card-title fs-18 line-clamp-2">
+              {{ category.name | escape_once }}
+            </p>
+            <p class="line-clamp-2">{{ category.description | escape_once }}</p>
+          </div>
+        </a>
+      </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
-              <a class="card h-100" href="{{ category.url }}" aria-label="{{ category.name | escape_once }}">
-                <div class="card-body">
-                  <p class="mt-0 card-title fs-18 line-clamp-2">{{ category.name | escape_once }}</p>
-                  <p class="line-clamp-2">{{ category.description | escape_once }}</p>
-                </div>
-              </a>
-            </div>
-
-            {% break %}
-          {% endfor %}
-        {% endif %}
+      {% break %}
+      {% endfor %}
+      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -146,16 +298,24 @@
 
 <section class="container-fluid px-0 pt-60 pb-44 bg-light">
   <div class="container">
-
-  {% if portal.has_solutions %}
+    {% if portal.has_solutions %}
     {% assign articles = portal | popular_articles:4 %}
-
     {% if articles.size > 0 %}
     <div class="col-12 mb-32">
-
       <div class="fw-section-heading row mb-16 home-popular-heading">
         <div class="col-12 col-md-8 text-center text-lg-start">
-          <h3 class="home-popular-title" style="font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; margin: 0;">{{ 'portal_translations.home.popular_articles' | t }}</h3>
+          <h3
+            class="home-popular-title"
+            style="
+              font-size: 40px;
+              line-height: 1.1;
+              font-weight: 600;
+              letter-spacing: -0.03em;
+              margin: 0;
+            "
+          >
+            {{ 'portal_translations.home.popular_articles' | t }}
+          </h3>
         </div>
 
         <div class="col-12 col-md-4 home-popular-link-wrap">
@@ -167,29 +327,44 @@
 
       <div class="fw-articles home-popular-articles">
         <div class="row home-popular-articles-grid">
-
           {% for article in articles %}
           <div class="col-12 col-md-6">
-            <a class="fw-article-info d-flex home-popular-article-card" href="{{article.url}}" aria-label="{{article.title}}">
+            <a
+              class="fw-article-info d-flex home-popular-article-card"
+              href="{{article.url}}"
+              aria-label="{{article.title}}"
+            >
               <div class="home-popular-article-icon-wrap">
                 <span class="icon-article home-popular-article-icon"></span>
               </div>
               <div class="home-popular-article-copy">
-                <p class="semi-bold line-clamp-2 home-popular-article-title">{{article.title}}</p>
+                <p class="semi-bold line-clamp-2 home-popular-article-title">
+                  {{article.title}}
+                </p>
                 <p class="line-clamp-2 fw-meta-info home-popular-article-meta">
-                  {{ article | solution_author_info: 'portal_home' }}
+                  {% if article.modified_on %}
+                    Modified on {{ article.modified_on | short_day_with_time }} by Satori Team
+                  {% elsif article.updated_on %}
+                    Modified on {{ article.updated_on | short_day_with_time }} by Satori Team
+                  {% elsif article.updated_at %}
+                    Modified on {{ article.updated_at | short_day_with_time }} by Satori Team
+                  {% else %}
+                    {% assign home_article_meta = article | solution_author_info: 'portal_home' %}
+                    {% if home_article_meta contains ' by ' %}
+                      {{ home_article_meta | split: ' by ' | first }} by Satori Team
+                    {% else %}
+                      Modified by Satori Team
+                    {% endif %}
+                  {% endif %}
                 </p>
               </div>
             </a>
           </div>
           {% endfor %}
-
         </div>
       </div>
-
     </div>
     {% endif %}
-  {% endif %}
-
+    {% endif %}
   </div>
 </section>

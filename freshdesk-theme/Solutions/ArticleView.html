@@ -26,7 +26,20 @@
         </div>
         <div class="text-start">
           <h1 class="fw-page-title">{{ article.title }}</h1>
-          <p>{{ article | solution_author_info: 'article-detail' }}</p>
+          {% if article.modified_on %}
+            <p>Modified on {{ article.modified_on | short_day_with_time }} by Satori Team</p>
+          {% elsif article.updated_on %}
+            <p>Modified on {{ article.updated_on | short_day_with_time }} by Satori Team</p>
+          {% elsif article.updated_at %}
+            <p>Modified on {{ article.updated_at | short_day_with_time }} by Satori Team</p>
+          {% else %}
+            {% assign article_meta = article | solution_author_info: 'article-detail' %}
+            {% if article_meta contains ' by ' %}
+              <p>{{ article_meta | split: ' by ' | first }} by Satori Team</p>
+            {% else %}
+              <p>Modified by Satori Team</p>
+            {% endif %}
+          {% endif %}
         </div>
       </div>
     </div>
